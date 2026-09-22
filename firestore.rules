@@ -1,0 +1,293 @@
+rules_version = '2';
+// SD-Chamber security rules — MERGED Jul 2026 from the live console rules
+// + the admin role, email pre-approval (approvals), calendar (config/holidays,
+// config/senioravail), and optional per-brief weight.
+// Aug 2026: + self-registered role:"user", per-user usermatters, and the
+// Collaborate feature (brieflinks/briefmsgs). See the COLLABORATION block.
+// Structure and existing behaviour preserved; only additive/adjusted where the
+// new features write. Publish in Firebase console → Firestore → Rules.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+
+    // Admin = the configured admin email (works even before a users doc exists —
+    // Adith is never locked out) OR an active users doc with role 'admin'.
+    // Keep this address in lockstep with CHAMBER.adminEmail in index.html.
+    function isAdminEmail() {
+      return signedIn() && request.auth.token.email != null
+             && request.auth.token.email.lower() == 'admin-email@example.com'   // <-- step 4 of SETUP.md (lower-case);
+    }
+    function userExists() {
+      return exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+    function myDoc() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }
+    function myRole() { return userExists() ? myDoc().role : 'pending'; }
+    function isAdmin() { return isAdminEmail() || (signedIn() && userExists() && myRole() == 'admin'); }
+
+    // Approved = the admin, OR an active chamber member. Short-circuits on
+    // isAdmin() so an admin with no users doc never triggers a get() on a
+    // missing document.
+    function isApproved() {
+      return isAdmin()
+        || (signedIn() && userExists()
+            && myRole() in ['senior','clerk','pa','junior','admin']
+            && myDoc().active == true);
+    }
+    // canManage = day-to-day operational input (admin + Staff/PA).
+    function canManage() {
+      return isAdmin() || (signedIn() && userExists() && myRole() in ['clerk','pa']);
+    }
+    function myEmailKey() { return request.auth.token.email.lower(); }
+
+    // ---- COLLABORATION helpers (Aug 2026) ----
+    // A self-registered individual (role:"user") is NOT a chamber member: they can
+    // never read or write the chamber's internal data (briefs, notifs, chat, config
+    // writes). They exist to track their own matters and to briefing-collaborate.
+    // canSeeBoard() = who may read the shared display-board data (today's day sheet +
+    // the live senior-location pin): every chamber member, PLUS an active role:"user"
+    // (a briefing AoR must see the senior's board to know if his matter will reach).
+    function canSeeBoard() {
+      return isApproved()
+        || (signedIn() && userExists()
+            && myRole() == 'user'
+            && myDoc().active == true);
+    }
+    // The chamber-side team that works the briefing inbox (approves/declines/revokes).
+    function isBriefTeam() {
+      return isAdmin()
+        || (signedIn() && userExists()
+            && myRole() in ['clerk','pa','senior']
+            && myDoc().active == true);
+    }
+    // canSeeBoardNow() gates the ACTUAL board data (today's day sheet + senior pin): a
+    // role:"user" AoR may read it ONLY while the chamber's briefaccess grant for them is
+    // in its window — so an approval opens the board for the day(s) it was for, not forever.
+    // Chamber members are unaffected. The briefaccess doc is written by the team on approve.
+    function briefAccessOk() {
+      return signedIn() && userExists() && myRole() == 'user' && myDoc().active == true
+        && exists(/databases/$(database)/documents/briefaccess/$(request.auth.uid))
+        && request.time.toMillis() < get(/databases/$(database)/documents/briefaccess/$(request.auth.uid)).data.expiresAt
+        && request.time.toMillis() >= get(/databases/$(database)/documents/briefaccess/$(request.auth.uid)).data.get('startsAt', 0);
+    }
+    function canSeeBoardNow() { return isApproved() || briefAccessOk(); }
+
+    match /users/{uid} {
+      allow read: if signedIn();
+      // Self-create only. Role is constrained so a stranger cannot self-assign
+      // privilege: 'pending', or the ordinary self-registration role 'user',
+      // unless they are the admin email, or Adith pre-approved their exact
+      // (lowercased) email at a chamber role.
+      // Self-registration CLOSED (Aug 2026): role 'user' can no longer be self-created.
+      // A new sign-in may only land as 'pending' (unusable until an admin acts), the admin
+      // email, or a chamber role that Adith pre-approved by (lowercased) email. Existing
+      // role 'user' accounts keep working; only NEW self-registration is blocked.
+      allow create: if signedIn() && request.auth.uid == uid
+                    && request.resource.data.email == request.auth.token.email
+                    && (
+                         request.resource.data.role == 'pending'
+                      || isAdminEmail()
+                      || (
+                           exists(/databases/$(database)/documents/approvals/$(myEmailKey()))
+                           && get(/databases/$(database)/documents/approvals/$(myEmailKey())).data.role
+                              == request.resource.data.role
+                         )
+                       );
+      // Admin edits anyone. A member may edit only their own record and may NOT
+      // change their own role / active / joinedOn (admin-only fields).
+      allow update: if isAdmin()
+                    || (request.auth.uid == uid
+                        && request.resource.data.role == resource.data.role
+                        && request.resource.data.active == resource.data.active
+                        && request.resource.data.get('joinedOn', null) == resource.data.get('joinedOn', null));
+      allow delete: if isAdmin();
+    }
+
+    // Email pre-approvals. Any signed-in user may READ (the just-signed-in user
+    // must find and claim their own invite; contents are only chamber
+    // names/roles/phones, and the chamber has no internal information walls).
+    // Only admin writes; a user may delete the invite that matches their email
+    // (self-cleanup after their first sign-in claims it).
+    match /approvals/{key} {
+      allow read: if signedIn();
+      allow create, update: if isAdmin();
+      allow delete: if isAdmin() || (signedIn() && key == myEmailKey());
+    }
+
+    match /briefs/{id} {
+      allow read: if isApproved();
+      allow create, delete: if canManage();
+      // Staff/PA/admin: full update (this is how the optional 'weight' field is
+      // set). A colleague may change ONLY the status/acknowledgment/objection
+      // fields of a brief assigned to them.
+      // An assigned colleague may also record directions/tasks, set the next
+      // date, mark disposed, claim full credit, and request reassignment.
+      // A colleague NAMED in a pending reassignment request may accept it
+      // (transferring the assignment) or decline (shrinking the request).
+      allow update: if canManage()
+                    || (isApproved()
+                        && request.auth.uid in resource.data.assignedTo
+                        && request.resource.data.diff(resource.data).affectedKeys()
+                           .hasOnly(['status','updatedAt','ackBy','declinedBy',
+                                     'heldForClerk','assignedTo','everAssigned',
+                                     'assignHistory','assignedAt',
+                                     'directions','creditClaim','nextDate','detailsAwaited',
+                                     'reassignReq','confNotes']))
+                    || (isApproved()
+                        && resource.data.reassignReq != null
+                        && request.auth.uid in resource.data.reassignReq.to
+                        && request.resource.data.diff(resource.data).affectedKeys()
+                           .hasOnly(['assignedTo','everAssigned','ackBy','assignHistory',
+                                     'reassignReq','assignedAt','updatedAt']))
+                    // First-login self-migration: work assigned before the colleague
+                    // ever signed in is recorded under "pending:<their email>"; on
+                    // first login they rewrite that alias to their real uid.
+                    || (isApproved()
+                        && ('pending:' + myEmailKey()) in resource.data.assignedTo
+                        && request.resource.data.diff(resource.data).affectedKeys()
+                           .hasOnly(['assignedTo','everAssigned','ackBy','assignHistory',
+                                     'updatedAt']));
+
+      match /comments/{cid} {
+        allow read: if isApproved();
+        allow create: if isApproved() && request.resource.data.by == request.auth.uid;
+        allow update, delete: if canManage();
+      }
+      match /files/{fid} {
+        // Everything is shared within the chamber — any approved member may read
+        allow read: if isApproved();
+        allow create: if isApproved() && request.resource.data.by == request.auth.uid;
+        allow update, delete: if canManage();
+      }
+    }
+
+    // Today's day sheet is the display board. Chamber members read it; an active
+    // role:"user" (a briefing AoR) may also read it, to view the senior's board.
+    // Only Staff/PA/admin write it.
+    match /daysheets/{date} {
+      allow read: if canSeeBoardNow();
+      allow write: if canManage();
+    }
+
+    // Parsed SC cause-list index (if used by the Load-SC-list / import feature).
+    match /scindex/{date} {
+      allow read: if isApproved();
+      allow write: if canManage();
+    }
+
+    // ---- config ----
+    // Enumerated so holidays stay ADMIN-only (technical feeding) without a
+    // broad catch-all silently widening it. The catch-all is admin-only so it
+    // can never loosen a more specific rule below it.
+    // The chamber's identity (Senior's name, designation, court) — shown on the sign-in
+    // card BEFORE anyone is signed in, so it is readable by all; only the admin writes it.
+    match /config/chamber { allow read: if true; allow write: if isAdmin(); }
+    match /config/roster {
+      allow read: if isApproved();
+      allow write: if canManage()
+                   || (isApproved()
+                       && request.resource.data.diff(resource.data).affectedKeys()
+                          .hasOnly(['pointer']));
+    }
+    match /config/senioravail { allow read: if isApproved(); allow write: if canManage(); }
+    // Live "Now" tracker — where the Senior is + which conference is on. Any
+    // approved member may set it (whoever is physically with the Senior taps
+    // the court). Chamber members AND briefing AoRs (role:"user") may READ it
+    // (the senior-location pin on the board); only chamber members write it.
+    match /config/live       { allow read: if canSeeBoardNow(); allow write: if isApproved(); }
+    // Per-conference live status (on-now / time estimate / notes), one doc per
+    // conference keyed by date+time+counsel. Live to all; any approved member
+    // may set it (colleagues take notes during the conference).
+    match /confstatus/{id}   { allow read: if isApproved(); allow write: if isApproved(); }
+    match /config/unavailable { allow read: if isApproved(); allow write: if canManage(); }
+    match /config/vacation    { allow read: if isApproved(); allow write: if canManage(); }
+    match /config/holidays    { allow read: if isApproved(); allow write: if isAdmin(); }
+    match /config/{doc}       { allow read: if isApproved(); allow write: if isAdmin(); }
+
+    match /availability/{key} {
+      allow read: if isApproved();
+      // members set their own status; Staff/PA/admin may set anyone's
+      allow write: if canManage()
+                   || (isApproved() && request.resource.data.uid == request.auth.uid);
+    }
+
+    // In-app notifications. Readable by any approved member (the UI shows only
+    // your own — clutter control, not secrecy; the chamber has no info walls).
+    // Anyone approved may create (they notify others); only the recipient (or
+    // Staff/admin) may delete.
+    match /notifs/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved();
+      allow delete: if canManage() || (isApproved() && resource.data.uid == request.auth.uid);
+    }
+
+    // War-room coordination chat (board.html). One flat collection, live to the
+    // whole chamber (incl. the Senior) — no info walls. Any approved member may
+    // post; sender is stamped as themselves. Sender or Staff/admin may delete.
+    // NOT extended to role:"user" — the chamber chat stays internal; a standalone
+    // user's chat tab is hidden.
+    match /messages/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved() && request.resource.data.by == request.auth.uid;
+      allow delete: if canManage() || (isApproved() && resource.data.by == request.auth.uid);
+    }
+
+    // Leave log — transparent to all approved members. A colleague may add/remove
+    // their OWN leave; Staff/PA/admin may add/remove for anyone.
+    match /leaves/{id} {
+      allow read: if isApproved();
+      allow create: if canManage() || (isApproved() && request.resource.data.uid == request.auth.uid);
+      allow update, delete: if canManage() || (isApproved() && resource.data.uid == request.auth.uid);
+    }
+
+    // ---- COLLABORATION (Aug 2026) ----
+    // Track-a-matter: a user's own privately-tracked matters. Owner-only, both ways.
+    match /usermatters/{uid} {
+      allow read:  if signedIn() && request.auth.uid == uid;
+      allow write: if signedIn() && request.auth.uid == uid;
+    }
+
+    // Briefing links: an AoR asks the chamber for permission to track the senior's
+    // board for their case(s). The requester creates it as "pending" (can't
+    // self-approve — only the chamber team may set 'approved'); the team
+    // approves/declines/revokes; the AoR may revoke/edit their own while it isn't
+    // approved. NOTE: read is collection-wide (the app loads the whole collection),
+    // so any chamber member or active role:"user" can read all briefing links —
+    // acceptable for the in-chamber value test; tightening to per-user reads (a
+    // constrained query + approved-access doc) is the pre-external-rollout step.
+    match /brieflinks/{id} {
+      allow read:   if canSeeBoard();
+      allow create: if signedIn()
+                    && request.resource.data.aorUid == request.auth.uid
+                    && request.resource.data.status == 'pending';
+      allow update: if isBriefTeam()
+                    || (signedIn()
+                        && resource.data.aorUid == request.auth.uid
+                        && request.resource.data.status != 'approved');
+      allow delete: if isBriefTeam()
+                    || (signedIn() && resource.data.aorUid == request.auth.uid);
+    }
+
+    // Per-link briefing messages, between the AoR and the chamber team. Sender is
+    // stamped as themselves; posting requires being the AoR of that link or the
+    // chamber team.
+    match /briefmsgs/{id} {
+      allow read:   if canSeeBoard();
+      allow create: if signedIn()
+                    && request.resource.data.by == request.auth.uid
+                    && (
+                         isBriefTeam()
+                      || get(/databases/$(database)/documents/brieflinks/$(request.resource.data.linkId)).data.aorUid == request.auth.uid
+                       );
+      allow delete: if isBriefTeam();
+    }
+
+    // Day-scoped board-access grant for a briefing AoR — {startsAt, expiresAt} in ms.
+    // Written ONLY by the chamber team (on approve/revoke); canSeeBoardNow() reads it to
+    // gate the day-sheet/senior-pin within its window. An AoR can never self-grant.
+    match /briefaccess/{uid} {
+      allow read:  if signedIn();
+      allow write: if isBriefTeam();
+    }
+  }
+}
