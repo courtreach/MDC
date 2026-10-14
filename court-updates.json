@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T08:01:03.887647Z",
+  "generated_at": "2026-10-14T14:03:37.841216Z",
   "parser_version": 8,
   "window": [
     "2026-10-14",
@@ -3898,7 +3898,7 @@
       "lists_found": [
         "Miscellaneous (main)",
         "Registrar (main)",
-        "Curative & Review (main)"
+        "Registrar (supp)"
       ],
       "lists": {
         "Miscellaneous": {
@@ -5352,7 +5352,7 @@
           },
           "2": {
             "coram": "MS. GRACY L. BAWITLUNG, REGISTRAR",
-            "total": "99",
+            "total": "100",
             "fresh": "",
             "items": {
               "1": "Diary No. 62214-2026 SONU KUMAR YADAV VERSUS STATE OF CHHATISGARH",
@@ -5459,7 +5459,8 @@
               "33": "T.P.(C) No. 2164/2026 POOJA VERSUS ABHISHEK",
               "34": "SLP(C) No. 30092/2026 ANITA AND ORS. VERSUS HAWA SINGH AND ANR.",
               "35": "Diary No. 47169-2026 ORIENTAL INSURANCE CO. LTD. VERSUS RAM SWAROOP @ MAHENDAR AND ORS.",
-              "36": "Diary No. 53827-2024 VIJAY CHOUDHARY VERSUS THE STATE OF MADHYA PRADESH AND ORS."
+              "36": "Diary No. 53827-2024 VIJAY CHOUDHARY VERSUS THE STATE OF MADHYA PRADESH AND ORS.",
+              "37": "Diary No. 15701-2026 TARA SINGH VERSUS PRESCRIBED AUTHORITY (CEILING) AND ORS."
             },
             "advocates": {
               "3": {
@@ -5506,7 +5507,7 @@
               }
             },
             "main": 99,
-            "supp": 0
+            "supp": 1
           }
         }
       }
@@ -5515,7 +5516,8 @@
       "lists_found": [
         "Miscellaneous (main)",
         "Chamber (main)",
-        "Single Judge (main)"
+        "Single Judge (main)",
+        "Registrar (main)"
       ],
       "lists": {
         "Miscellaneous": {
@@ -8040,6 +8042,252 @@
             "main": 6,
             "supp": 0
           }
+        },
+        "Registrar": {
+          "1": {
+            "coram": "SH. APOORV SINGH, REGISTRAR",
+            "total": "35",
+            "fresh": "",
+            "items": {
+              "1": "Diary No. 41549-2026 V VENKATESHULU VERSUS THE SECRETARY MINISTRY OF MINES AND ORS.",
+              "2": "Crl.A. No. 4832/2025 BABASAHEB BHASKAR SAID VERSUS THE STATE OF MAHARASHTRA",
+              "3": "Diary No. 17368-2026 RAMPRASAD BAIRAGI VERSUS DEEPAK PARASHAR AND ANR.",
+              "4": "Diary No. 51400-2026 ZAHID MEHMOOD VERSUS UNION OF INDIA AND ORS.",
+              "5": "Diary No. 55498-2026 KHALEEL AHMED VERSUS M. NAGARATHNA",
+              "6": "C.A. No. 6509/2026 HARBHEJ SINGH AND ANR. VERSUS THE STATE OF PUNJAB AND ORS. NUPUR KUMAR- 3078 [R-",
+              "7": "Crl.A. No. NATIONAL INVESTIGATION AGENCY VERSUS MUZAMMIL PASHA AND ORS.",
+              "8": "SLP(C) No. 27490/2023 R. J. CONSTRUCTION VERSUS SANJAY BHIMASHANKAR THOBADE AND ANR.",
+              "8.1": "Connected PRAMOD SHANKAR MOHITE VERSUS R J CONSTRUCTION AND ANR.",
+              "9": "Crl.A. No. 2549/2026 GANGAPPA AND ANR. VERSUS STATE OF KARNATAKA AND ORS.",
+              "9.1": "Connected SHANKARNANDA VERSUS STATE OF KARNATAKA AND ORS.",
+              "10": "ARBIT.PETITON No. M/S SPG GLOBAL COMMODITIES LIMITED VERSUS M/S NEXT WEST AFRICA SARL",
+              "10.1": "Connected M/S SPG GLOBAL COMMODITIES LIMITED VERSUS M/S NEXT WEST AFRICA CI",
+              "10.2": "Connected M/S SPG GLOBAL COMMODITIES LIMITED VERSUS M/S NEXT WEST AFRICA CI",
+              "11": "SLP(C) No. 23292/2024 THE SPECIAL COLLECTOR (L.A.) AND ANR. VERSUS AADURI PEDA VEERA REDDY AND ORS.",
+              "12": "Crl.A. No. KRUPA VERSUS THE STATE OF GUJARAT AND ORS.",
+              "13": "SLP(Crl) No. BALWANT SINGH VERSUS STATE OF PUNJAB AND ORS.",
+              "14": "Crl.A. No. 2566/2026 MURARI MUNSHIRAM YADAV VERSUS STATE OF GUJARAT",
+              "15": "C.A. No. 12696/2025 PRINCIPAL COMMISSIONER/ COMMISSIONER OF VERSUS M/S MAHAJAN FABRICS PRIVATE LIMITED",
+              "15.1": "Connected THE COMMISSIONER OF CUSTOMS VERSUS M/S GLOOM EXPORTS",
+              "16": "SLP(C) No. 18469/2026 REKHA DHAKAD AND ORS. VERSUS THE STATE OF MADHYA PRADESH AND ORS.",
+              "17": "Crl.A. No. 2334/2026 KEDAR CHOUDHARY AND ANR. VERSUS STATE OF JHARKHAND",
+              "18": "SLP(C) No. 6048/2026 CHANNABASAPPA AND ORS. VERSUS KRISHNA AND ANR.",
+              "19": "C.A. No. 13626/2025 JOYDEEP BANERJEE AND ANR. VERSUS CARE HEALTH INSURANCE LIMITED (EARLIER",
+              "19.1": "Connected PONKUMAR AND ANR. VERSUS RELIGARE HEALTH INSURANCE COMPANY LTD.",
+              "20": "T.P.(C) No. 3480/2025 GUNJAN @ SANDHYA VERSUS BHUPENDER SINGH",
+              "21": "SLP(Crl) No. HARINDRAVEER SINGH @ BILLU VERSUS THE STATE OF RAJASTHAN AND ANR.",
+              "22": "SLP(C) No. THE MANAGEMENT OF M/S. EXPERT INDUSTRIES VERSUS H.B. BIRADAR AND ORS.",
+              "23": "T.P.(C) No. 423/2026 RASHMIKA JAMADAGNI VERSUS SHAMSHER JAMADAGNI",
+              "23.1": "Connected RASHMIKA JAMADAGNI VERSUS ROHTASH JAMADAGNI AND ANR.",
+              "23.2": "Connected RASHMIKA JAMADAGNI VERSUS ROHTASH JAMADAGNI AND ANR.",
+              "24": "T.P.(C) No. 429/2026 JYOTI PATEL VERSUS KIRTI PATEL",
+              "25": "SLP(C) No. 10004/2026 SILIVERU VENKATESHWARLU VERSUS SILIVERY RAMBAI @ VEERIJALA RAMBAI",
+              "26": "SLP(C) No. 10135/2026 D.S. PARIHAR MAANAV VIKAS EVAM SIKSHA SAMITI VERSUS STATE OF MADHYA PRADESH AND ORS.",
+              "26.1": "Connected VINDHYACHAL SHIKSHA SAMITI JIGANA VERSUS STATE OF MADHYA PRADESH AND ORS.",
+              "26.2": "Connected DHARAM RAJESHWAR SHIKSHA EVAM SAMAJ SEVA VERSUS STATE OF MADHYA PRADESH AND ORS.",
+              "27": "SLP(C) No. 13404/2026 EKNATH PRASAD AND ORS. VERSUS UNION OF INDIA AND ORS.",
+              "27.1": "Connected NEELAM RAJU VEERA RAGHAVA RAO AND ORS. VERSUS UNION OF INDIA AND ORS.",
+              "27.2": "Connected TEDLA PRABHAKAR RAO AND ORS. VERSUS UNION OF INDIA AND ORS.",
+              "28": "SLP(C) No. 12082/2026 RURAL ELECTRIFICATION CORPORATION LIMITED VERSUS OFFSHORE INFRASTRUCTURE LIMITED AND ORS.",
+              "28.1": "Connected M.P. MADHYA KSHETR VIDYUT VITRAN COMPANY VERSUS RURAL ELECTRIFICATION CORPORATION LIMITED",
+              "29": "Crl.A. No. JAYBAN ADIVASI @ JAY SINGH VERSUS STATE OF KARNATAKA AND ANR.",
+              "29.1": "Connected MANISH THIRKI VERSUS STATE OF KARNATAKA",
+              "30": "Crl.A. No. 2865/2026 STATE OF M P THROUGH CENTRAL BUREAU OF VERSUS HOME SINGH THAKUR ILA SHIKHAR SHEEL- 2883",
+              "31": "SLP(C) No. MEENAXI @ MAHADEV AND ORS. VERSUS BASAPPA CHANNAPPA HALALLI AND ORS.",
+              "32": "SLP(C) No. 28226/2026 M/S BURLINGTONS EXPORTS VERSUS TEXTILE CONNECTION AND ANR.",
+              "33": "T.P.(C) No. 2538/2026 DR. DEEPAK SHANKAR RAY VERSUS SUTAPA RAY",
+              "34": "T.P.(C) No. 2549/2026 SUCHITA SAHANI VERSUS RINKU SAHANI",
+              "35": "T.P.(C) No. 2735/2026 SAPNA PAL VERSUS RAVI KUMAR"
+            },
+            "advocates": {
+              "3": {
+                "pet": "FARHAT JAHAN REHMANI"
+              },
+              "7": {
+                "pet": "ARVIND KUMAR SHARMA"
+              },
+              "9": {
+                "pet": "ANKOLEKAR GURUDATTA"
+              },
+              "9.1": {
+                "pet": "ANKOLEKAR GURUDATTA"
+              },
+              "11": {
+                "pet": "GUNTUR PRAMOD KUMAR"
+              },
+              "15": {
+                "pet": "GURMEET SINGH MAKKER"
+              },
+              "15.1": {
+                "pet": "GURMEET SINGH MAKKER"
+              },
+              "18": {
+                "pet": "HERINDER KAUR BRAR"
+              },
+              "20": {
+                "pet": "SHUBHRANSHU PADHI"
+              },
+              "23": {
+                "pet": "DIVYESH PRATAP SINGH"
+              },
+              "23.1": {
+                "pet": "DIVYESH PRATAP SINGH"
+              },
+              "23.2": {
+                "pet": "DIVYESH PRATAP SINGH"
+              },
+              "24": {
+                "pet": "SHASHANK KUMAR"
+              },
+              "30": {
+                "pet": "SHREEKANT NEELAPPA"
+              },
+              "33": {
+                "pet": "SUNIL KUMAR SHARMA"
+              }
+            },
+            "main": 35,
+            "supp": 0
+          },
+          "2": {
+            "coram": "MS. GRACY L. BAWITLUNG, REGISTRAR",
+            "total": "35",
+            "fresh": "",
+            "items": {
+              "1": "SLP(C) No. 313/2025 MANDOTH DINESAN VERSUS PRAKASAN AND ORS.",
+              "2": "SLP(C) No. LUISA KHARIAIN AND ORS. VERSUS NICOLAS EKKA AND ORS.",
+              "3": "Diary No. 75283-2025 DEEP DHANVANTH SINGH BHALLA VERSUS THE STATE OF MAHARASHTRA",
+              "4": "SLP(Crl) No. SIDDAPPA AND ORS. VERSUS THE STATE OF KARNATAKA AND ANR.",
+              "5": "SLP(C) No. THE ANUBHAVA MANTAPA TRUST BY SECRETARY VERSUS C.R.HIREMATH (D) THR.LRS. . AND ORS.",
+              "5.1": "Connected SRI AKKAMAHADEVI SAMAJA AND ANR. VERSUS C.R.HIREMATH (D) BY LRS. . AND ORS.",
+              "6": "SLP(C) No. 23991/2023 CHHOTELAL SINGH (DEAD) THROUGH LEGAL VERSUS RAMBAHADUR SINGH AND ORS.",
+              "7": "SLP(C) No. 21340/2024 TOWN IMPROVEMENT TRUST VERSUS SUNIL SINGLA",
+              "7.1": "Connected TOWN IMPROVEMENT TRUST BATHINDA VERSUS SARABJEET KAUR",
+              "8": "SLP(C) No. 28667/2024 THE STATE OF MAHARASHTRA AND ORS. VERSUS SHASHI ARUN TONGO AND ORS.",
+              "8.1": "Connected THE STATE OF MAHARASHTRA AND ANR. VERSUS LAXMIKANT PANDURANG GAWANDE",
+              "8.2": "Connected THE STATE OF MAHARASHTRA AND ORS. VERSUS RAMESH L. VAIDYA AND ORS.",
+              "8.3": "Connected THE STATE OF MAHARASHTRA AND ORS. VERSUS SHANKARLAL K. KOTHARI AND ORS.",
+              "8.4": "Connected THE STATE OF MAHARASHTRA AND ORS. VERSUS VISHWANATH TRIMBAK HAJARE AND ORS. BIRENDRA KUMAR ",
+              "8.5": "Connected THE STATE OF MAHARASHTRA AND ORS. VERSUS NILKANTH AND ORS.",
+              "8.6": "Connected THE STATE OF MAHARASHTRA AND ORS. VERSUS NAGPUR UNIVERSITY TEACHERS ASSOCIATION",
+              "8.7": "Connected THE GOVT. OF MAHARASHTRA AND ORS. VERSUS NARAYAN WAMANRAO CHAWANDE AND ORS.",
+              "8.8": "Connected THE STATE OF MAHARASHTRA AND ORS. VERSUS RAMESH MADHAV ACHARAYA AND ORS.",
+              "8.9": "Connected DR. PUNJABRAO DESHMUKH KRISHI VIDYAPEETH VERSUS SHESHRAO AND ORS.",
+              "8.10": "Connected DR PUNJABRAO DESHMUKH KRISHI VIDYAPEETH VERSUS MADHUSUDAN RAMCHANDRA JOSHI AND ORS.",
+              "8.11": "Connected DR. PUNJABRAO DESHMUKH KRISHI VIDYAPEETH VERSUS GAJANAN MANSARAM BORKAR AND ORS. RAMESHWAR PRASAD",
+              "8.12": "Connected DR. PUNJABRAO DESHMUKH KRISHI VIDYAPEETH VERSUS MAHADEO AND ORS.",
+              "9": "Crl.A. No. 3936/2026 AJAY SARKAR VERSUS STATE OF CHHATTISGARH",
+              "10": "SLP(C) No. 13487/2026 GOPINATH DAS VERSUS DAMODAR DAS AND ORS.",
+              "10.1": "Connected GOPINATH DAS VERSUS DAMODAR DAS AND ORS.",
+              "11": "T.P.(C) No. 2769/2025 GEETA VERSUS SUMIT SAHU",
+              "12": "SLP(Crl) No. SHARANAPPA VERSUS THE STATE OF KARNATAKA",
+              "13": "C.A. No. E. P ATTAKOYA THANGAL VERSUS SAYYED SHAIKOYA AND ANR.",
+              "14": "SLP(C) No. 21495/2026 MURTI THAKUR JI MAHARAJ AND ORS. VERSUS BABU LAL AND ORS.",
+              "15": "SLP(C) No. 25774/2026 MEERA DEVI AND ANR. VERSUS JAIPUR DEVELOPMENT AUTHORITY AND ORS.",
+              "16": "SLP(Crl) No. 3730/2026 MALATI PARIDA VERSUS STATE OF ODISHA AND ANR.",
+              "17": "SLP(C) No. 8899/2026 HASSEB AHMAD AND ORS. VERSUS SAHIBA AND ORS.",
+              "18": "SLP(C) No. MINI ZAKIR VERSUS M/S PHOENIX ARC PRIVATE LIMITED AND ANR.",
+              "19": "SLP(C) No. 12932/2026 KOCHI METRO RAIL LTD. (KMRL) AND ANR. VERSUS BAYBIN J. KORAH AND ORS.",
+              "20": "T.P.(C) No. 918/2026 VIJAYA VERSUS PRAVEEN",
+              "21": "T.P.(Crl.) No. 501/2026 SAFIYA VERSUS HASEENA BEGAM AND ORS.",
+              "22": "SLP(C) No. 15635/2026 YASMEEN SULTANA VERSUS MUNEER AHMED SHARIFF",
+              "22.1": "Connected JAVERIA NUSARATH VERSUS SYED AYUB HUSSAIN @ AYUB",
+              "23": "Diary No. 29639-2026 V.NEDUMARAN VERSUS THE TAMIL NADU WAKF BOARD AND ORS.",
+              "24": "SLP(C) No. 19211/2026 REVATI JATAV AND ANR. VERSUS NEETA GUPTA",
+              "25": "SLP(C) No. SHRIRAM GENERAL INSURANCE COMPANY VERSUS MOHAMMED SAGIR AND ORS.",
+              "26": "SLP(C) No. 33343/2026 THE COMMISSIONER OF COMMERCIAL TAX AND VERSUS M/S UJJAS ENERGY LTD.",
+              "26.1": "Connected THE COMMISSIONER OF COMMERCIAL TAX AND VERSUS M/S UJAAS ENERGY LTD.",
+              "27": "SLP(C) No. 22563/2026 MUZAFFARPUR CLUB (THROUGH ITS MEMBERS ) VERSUS USHA SINHA AND ORS.",
+              "28": "SLP(C) No. 25975/2026 M. RAJU AND ANR. VERSUS SARLA KOUL",
+              "29": "SLP(C) No. SREEPARVATHY R.S AND ORS. VERSUS HIGH COURT OF KERALA AND ORS.",
+              "30": "SLP(C) No. 25662/2026 BOBAN B DAVIDSON VERSUS IVY JUDE",
+              "31": "T.P.(C) No. 2145/2026 MINAKSHI GUPTA VERSUS ROHIT",
+              "32": "SLP(C) No. 29273/2026 MANAGING COMMITTEE CHILLA BANDA NAWAZ VERSUS RAHIMUNISA AND ORS.",
+              "32.1": "Connected MAHARASHTRA WAQF BOARD, AURANGABAD VERSUS RAHIMUNISA AND ORS.",
+              "33": "T.P.(C) No. 2142/2026 SHILPA VERSUS RAGUWINDER SINGH",
+              "34": "T.P.(C) No. 2200/2026 NISHANTHINI PATHMANATHAN VERSUS SWARAJ PADHI",
+              "35": "T.P.(C) No. 2682/2026 PRACHI OJHA VERSUS NILABH PANDEY"
+            },
+            "advocates": {
+              "3": {
+                "pet": "SUNIL PRAKASH SHARMA"
+              },
+              "5.1": {
+                "pet": "ANKOLEKAR GURUDATTA"
+              },
+              "6": {
+                "pet": "MUKESH KUMAR SINGH"
+              },
+              "8": {
+                "pet": "AADITYA ANIRUDDHA"
+              },
+              "8.1": {
+                "pet": "AADITYA ANIRUDDHA"
+              },
+              "8.2": {
+                "pet": "AADITYA ANIRUDDHA"
+              },
+              "8.3": {
+                "pet": "AADITYA ANIRUDDHA"
+              },
+              "8.4": {
+                "pet": "AADITYA ANIRUDDHA"
+              },
+              "8.5": {
+                "pet": "AADITYA ANIRUDDHA"
+              },
+              "8.6": {
+                "pet": "AADITYA ANIRUDDHA"
+              },
+              "8.7": {
+                "pet": "AADITYA ANIRUDDHA"
+              },
+              "8.8": {
+                "pet": "AADITYA ANIRUDDHA"
+              },
+              "8.9": {
+                "pet": "PRAVARTAK SUHAS"
+              },
+              "8.10": {
+                "pet": "PRAVARTAK SUHAS"
+              },
+              "8.11": {
+                "pet": "PRAVARTAK SUHAS"
+              },
+              "8.12": {
+                "pet": "PRAVARTAK SUHAS"
+              },
+              "15": {
+                "pet": "AKSHAT SHRIVASTAVA"
+              },
+              "17": {
+                "pet": "V. MAHESHWARI & CO"
+              },
+              "19": {
+                "pet": "PUNEET SINGH BINDRA"
+              },
+              "20": {
+                "pet": "RAMESHWAR PRASAD"
+              },
+              "24": {
+                "pet": "SHREY RAVI DAMBHARE"
+              },
+              "26": {
+                "pet": "MRINAL GOPAL ELKER"
+              },
+              "26.1": {
+                "pet": "MRINAL GOPAL ELKER"
+              },
+              "27": {
+                "pet": "RAJIV SHANKAR DVIVEDI"
+              },
+              "28": {
+                "pet": "PASHUPATHI NATH"
+              }
+            },
+            "main": 35,
+            "supp": 0
+          }
         }
       }
     }
@@ -8060,12 +8308,13 @@
     "2026-10-15": {
       "M_J_1": 781920,
       "M_R_1": 544660,
-      "M_CC_1": 518575
+      "M_R_2": 505004
     },
     "2026-10-16": {
       "M_J_1": 853396,
       "M_C_1": 567240,
-      "M_S_1": 532037
+      "M_S_1": 532037,
+      "M_R_1": 530587
     }
   },
   "note": "Per-court bench + per-item case line from the SC published lists. Drafting aid only — the court's published list is authoritative."
