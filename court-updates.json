@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T18:36:52.349419Z",
+  "generated_at": "2026-10-16T07:32:26.738023Z",
   "parser_version": 8,
   "window": [
     "2026-10-16",
@@ -726,7 +726,7 @@
               "42.2": "Connected HARISH CHANDRA NAYAK VERSUS STATE OF ODISHA AND ANR.",
               "43": "SLP(Crl) No. NAND KISHOR BAIRWA VERSUS JEET SINGH AND ANR. ETC.",
               "44": "T.P.(C) No. 153/2026 ILA PANERI VERSUS MUDIT JOSHI",
-              "45": "[R-4], GURMEET SINGH MAKKER-",
+              "45": "4185[R-3], [R-4], GURMEET SINGH",
               "1672": "[IMPL], SHREEKANT",
               "2196": "[IMPL], SANCHIT",
               "3813": "[IMPL], RUPALI",
@@ -771,6 +771,7 @@
               "301.1": "Diary No. 39789-2026 KISHAN CHAND JAIN VERSUS V. UMASHANKAR",
               "301.2": "Diary No. 40407-2026 S. RAJASEKARAN VERSUS UNION OF INDIA AND ORS.",
               "302": "C.A. No. 583/2026 MS CORE HOTELS VENTURES PVT LTD VERSUS BANK OF BARODA AND ORS.",
+              "303.1": "MA 3028/2026 in C.A. R VERSUS FOR CLARIFICATION/DIRECTION ON IA",
               "73": "SLP(C) No. 36162/2026 VINAY SOMANI AND ANR. VERSUS RAMESH VENKATESHWAR SOMANI AND ORS.",
               "74": "SLP(C) No. 30669/2026 REENU ALIYAMMA CHERIAN VERSUS ABRAHAM KURIAN PLAMTHOTTAM"
             },
@@ -3100,7 +3101,7 @@
   "sources": {
     "2026-10-16": {
       "M_J_1": 853596,
-      "M_J_2": 623059,
+      "M_J_2": 626664,
       "M_C_1": 567240,
       "M_C_2": 508703,
       "M_S_1": 532037,
